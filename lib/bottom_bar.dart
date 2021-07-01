@@ -5,6 +5,9 @@ import 'package:ecommerce_app/screens/search.dart';
 import 'package:ecommerce_app/screens/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+
+import 'constants/my_icons.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static const routeName = "/BottomBarScreen";
@@ -14,28 +17,17 @@ class BottomBarScreen extends StatefulWidget {
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-
-   late List<Map<String, Widget>> _pages;
-  int _selectedIndex = 0;
+  List<Map<String, Object>> _pages;
+  int _selectedIndex = 4;
 
   @override
   void initState() {
     _pages = [
-      {
-        'page': HomeScreen(),
-      },
-      {
-        'page': FeedScreen(),
-      },
-      {
-        'page': SearchScreen(),
-      },
-      {
-        'page': CartScreen(),
-      },
-      {
-        'page': UserScreen(),
-      },
+      {'page': HomeScreen(), 'title': 'Home screen'},
+      {'page': FeedScreen(), 'title': 'Feed screen'},
+      {'page': SearchScreen(), 'title': 'Search screen'},
+      {'page': CartScreen(), 'title': 'Car screen'},
+      {'page': UserScreen(), 'title': 'User screen'},
     ];
     super.initState();
   }
@@ -51,38 +43,48 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     return Scaffold(
       body: _pages[_selectedIndex]['page'],
       bottomNavigationBar: BottomAppBar(
+        clipBehavior: Clip.antiAlias,
+        notchMargin: 0.01,
         shape: CircularNotchedRectangle(),
-        child: BottomNavigationBar(
-          onTap: _selectedPage,
-          backgroundColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Theme.of(context).textSelectionColor,
-          selectedItemColor: Colors.purple,
-          currentIndex: _selectedIndex,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), tooltip: 'Home', label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.rss_feed), tooltip: 'Feeds', label: 'Feeds'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), tooltip: 'Search', label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag), tooltip: 'Cart', label: 'Cart'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), tooltip: 'User', label: 'User'),
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border(top: BorderSide(width: 0.5, color: Colors.grey)),
+              color: Colors.white),
+          child: BottomNavigationBar(
+            onTap: _selectedPage,
+            backgroundColor: Theme.of(context).primaryColor,
+            unselectedItemColor: Theme.of(context).textSelectionColor,
+            selectedItemColor: Colors.purple,
+            currentIndex: _selectedIndex,
+            items: [
+              BottomNavigationBarItem(icon: Icon(MyAppIcons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(MyAppIcons.rss), label: 'Feeds'),
+              BottomNavigationBarItem(
+                  icon: Icon(null), label: 'Search', activeIcon: null),
+              BottomNavigationBarItem(
+                  icon: Icon(MyAppIcons.cart), label: 'Cart'),
+              BottomNavigationBarItem(icon: Icon(MyAppIcons.user), label: 'User'),
+            ],
+          ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.purple,
-        tooltip: 'Search',
-        elevation: 5,
-        child: Icon(Icons.search),
-        onPressed: () {
-          setState(() {
-            _selectedIndex = 2;
-          });
-        },
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          hoverElevation: 10,
+          backgroundColor: Colors.purple,
+          splashColor: Colors.grey,
+          tooltip: 'Search',
+          elevation: 4,
+          child: Icon(MyAppIcons.search),
+          onPressed: () {
+            setState(() {
+              _selectedIndex = 2;
+            });
+          },
+        ),
       ),
     );
   }
