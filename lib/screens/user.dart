@@ -32,82 +32,82 @@ class _UserScreenState extends State<UserScreen> {
         children: [
           CustomScrollView(
             controller: _scrollController,
-            slivers: [
+            slivers: <Widget>[
               SliverAppBar(
                 automaticallyImplyLeading: false,
                 elevation: 4,
                 expandedHeight: 200,
                 pinned: true,
                 flexibleSpace: LayoutBuilder(
-                  builder: (context, constraints) {
-                    top = constraints.biggest.height;
-                    return Container(
-                      decoration: BoxDecoration(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      top = constraints.biggest.height;
+                      return Container(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
                                 MyColors.starterColor,
-                                MyColors.endColor
+                                MyColors.endColor,
                               ],
-                              begin: FractionalOffset(0.0, 0.0),
-                              end: FractionalOffset(1.0, 0.0),
+                              begin: const FractionalOffset(0.0, 0.0),
+                              end: const FractionalOffset(1.0, 0.0),
                               stops: [0.0, 1.0],
-                              tileMode: TileMode.clamp)),
-                      child: FlexibleSpaceBar(
-                        collapseMode: CollapseMode.parallax,
-                        centerTitle: true,
-                        title: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AnimatedOpacity(
-                              duration: Duration(milliseconds: 300),
-                              opacity: top <= 110.0 ? 1.0 : 0,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Container(
-                                    height: kToolbarHeight / 1.8,
-                                    width: kToolbarHeight / 1.8,
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.white,
-                                          blurRadius: 1.0,
+                              tileMode: TileMode.clamp),
+                        ),
+                        child: FlexibleSpaceBar(
+                          collapseMode: CollapseMode.parallax,
+                          centerTitle: true,
+                          title: Row(
+                            //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              AnimatedOpacity(
+                                duration: Duration(milliseconds: 300),
+                                opacity: top <= 110.0 ? 1.0 : 0,
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    Container(
+                                      height: kToolbarHeight / 1.8,
+                                      width: kToolbarHeight / 1.8,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.white,
+                                            blurRadius: 1.0,
+                                          ),
+                                        ],
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(
+                                              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                                         ),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(
-                                            'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Text(
-                                    // 'top.toString()',
-                                    'Guest',
-                                    style: TextStyle(
-                                        fontSize: 20.0, color: Colors.white),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    Text(
+                                      // 'top.toString()',
+                                      'Guest',
+                                      style: TextStyle(
+                                          fontSize: 20.0, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          background: Image(
+                            image: NetworkImage(
+                                'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                        background: Image(
-                          image: NetworkImage(
-                              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    }),
               ),
               SliverToBoxAdapter(
                 child: Column(
@@ -115,17 +115,20 @@ class _UserScreenState extends State<UserScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: userTitle('User information'),
-                    ),
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: userTitle('User Information')),
                     Divider(
                       thickness: 1,
                       color: Colors.grey,
                     ),
-                    userListTile(context, 'Email', 'test', 0),
-                    userListTile(context, 'Phone number', 'test', 1),
-                    userListTile(context, 'Shipping address', 'test', 2),
-                    userListTile(context, 'Joined date', 'test', 3),
+                    userListTile(context, 'Email', 'Email sub', 0),
+                    userListTile(context,'Email', 'Email sub', 0),
+                    userListTile(context,'Email', 'Email sub', 0),
+                    userListTile(context,'Email', 'Email sub', 0),
+                    userListTile(context,'Email', 'Email sub', 0),
+                    userListTile(context,'Phone number', '4555', 0),
+                    userListTile(context,'Shipping address', '', 0),
+                    userListTile(context,'joined date', 'date', 0),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: userTitle('User settings'),
@@ -136,29 +139,69 @@ class _UserScreenState extends State<UserScreen> {
                     ),
                     ListTileSwitch(
                       value: _value,
-                      leading: const Icon(Ionicons.md_moon),
+                      leading: Icon(Ionicons.md_moon),
                       onChanged: (value) {
                         setState(() {
                           _value = value;
                         });
                       },
-                      switchActiveColor: Colors.indigo,
                       visualDensity: VisualDensity.comfortable,
                       switchType: SwitchType.cupertino,
-                      title: const Text(
-                        'Dark theme',
-                      ),
+                      switchActiveColor: Colors.indigo,
+                      title: Text('Dark theme'),
                     ),
                     userListTile(context, 'Logout', '', 4),
                   ],
                 ),
               )
             ],
-          )
+          ),
+          _buildFab()
         ],
       ),
     );
   }
+
+  Widget _buildFab() {
+    //starting fab position
+    final double defaultTopMargin = 200.0 - 4.0;
+    //pixels from top where scaling should start
+    final double scaleStart = 160.0;
+    //pixels from top where scaling should end
+    final double scaleEnd = scaleStart / 2;
+
+    double top = defaultTopMargin;
+    double scale = 1.0;
+    if (_scrollController.hasClients) {
+      double offset = _scrollController.offset;
+      top -= offset;
+      if (offset < defaultTopMargin - scaleStart) {
+        //offset small => don't scale down
+        scale = 1.0;
+      } else if (offset < defaultTopMargin - scaleEnd) {
+        //offset between scaleStart and scaleEnd => scale down
+        scale = (defaultTopMargin - scaleEnd - offset) / scaleEnd;
+      } else {
+        //offset passed scaleEnd => hide fab
+        scale = 0.0;
+      }
+    }
+
+    return  Positioned(
+      top: top,
+      right: 16.0,
+      child:  Transform(
+        transform:  Matrix4.identity()..scale(scale),
+        alignment: Alignment.center,
+        child:  FloatingActionButton(
+          heroTag: "btn1",
+          onPressed: (){},
+          child:  Icon(Icons.camera_alt_outlined),
+        ),
+      ),
+    );
+  }
+
 
   List<IconData> _userTileIcon = [
     Icons.email,
