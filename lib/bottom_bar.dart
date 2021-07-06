@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/screens/cart.dart';
+import 'package:ecommerce_app/screens/cart_empty.dart';
 import 'package:ecommerce_app/screens/feeds.dart';
 import 'package:ecommerce_app/screens/home.dart';
 import 'package:ecommerce_app/screens/search.dart';
@@ -26,7 +27,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       {'page': HomeScreen(), 'title': 'Home screen'},
       {'page': FeedScreen(), 'title': 'Feed screen'},
       {'page': SearchScreen(), 'title': 'Search screen'},
-      {'page': CartScreen(), 'title': 'Car screen'},
+      {'page': CartEmpty(), 'title': 'Car screen'},
       {'page': UserScreen(), 'title': 'User screen'},
     ];
     super.initState();

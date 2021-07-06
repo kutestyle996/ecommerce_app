@@ -1,8 +1,10 @@
 import 'package:ecommerce_app/constants/my_colors.dart';
+import 'package:ecommerce_app/provider/dark_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:provider/provider.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key key}) : super(key: key);
@@ -12,7 +14,6 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  bool _value = false;
   ScrollController _scrollController;
   var top = 0.0;
 
@@ -27,6 +28,7 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -138,11 +140,11 @@ class _UserScreenState extends State<UserScreen> {
                       color: Colors.grey,
                     ),
                     ListTileSwitch(
-                      value: _value,
+                      value: themeChange.darkMode,
                       leading: Icon(Ionicons.md_moon),
                       onChanged: (value) {
                         setState(() {
-                          _value = value;
+                          themeChange.darkMode = value;
                         });
                       },
                       visualDensity: VisualDensity.comfortable,
