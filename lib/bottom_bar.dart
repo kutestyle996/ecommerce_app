@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/screens/cart.dart';
-import 'package:ecommerce_app/screens/cart_empty.dart';
+import 'file:///D:/ecommerce_app/lib/widget/cart_empty.dart';
+import 'file:///D:/ecommerce_app/lib/widget/cart_full.dart';
 import 'package:ecommerce_app/screens/feeds.dart';
 import 'package:ecommerce_app/screens/home.dart';
 import 'package:ecommerce_app/screens/search.dart';

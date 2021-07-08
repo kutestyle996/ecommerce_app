@@ -7,4 +7,5 @@ class MyAppIcons {
   static IconData search = Feather.search;
   static IconData user = Feather.user;
   static IconData cart = MaterialCommunityIcons.cart;
+  static IconData trash = Feather.shopping_bag;
 }
