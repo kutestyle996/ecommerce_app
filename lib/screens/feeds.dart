@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class FeedScreen extends StatelessWidget {
+
+  static const routeName = '/feeds';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: StaggeredGridView.countBuilder(
-      crossAxisCount: 6
-          ,
+      crossAxisCount: 6,
       itemCount: 8,
       itemBuilder: (BuildContext context, int index) => new FeedProducts(),
       staggeredTileBuilder: (int index) =>
-          new StaggeredTile.count(3, index.isEven ? 4:5),
+          new StaggeredTile.count(3, index.isEven ? 4 : 5),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
     )

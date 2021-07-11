@@ -12,6 +12,7 @@ class Styles {
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
         colorScheme: isDarkMode ? ColorScheme.dark() : ColorScheme.light(),
       ),
+      textSelectionColor: isDarkMode ? Colors.white : Colors.black,
       appBarTheme: AppBarTheme(
         elevation: 0.0
       )

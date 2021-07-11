@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/constants/my_colors.dart';
+import 'package:ecommerce_app/constants/my_icons.dart';
 import 'package:ecommerce_app/provider/dark_theme_provider.dart';
+import 'package:ecommerce_app/screens/wishlist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -7,6 +9,7 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 
 class UserScreen extends StatefulWidget {
+  static const routeName = '/user';
   const UserScreen({Key key}) : super(key: key);
 
   @override
@@ -40,76 +43,76 @@ class _UserScreenState extends State<UserScreen> {
                 elevation: 4,
                 expandedHeight: 200,
                 pinned: true,
-                flexibleSpace: LayoutBuilder(
-                    builder: (BuildContext context, BoxConstraints constraints) {
-                      top = constraints.biggest.height;
-                      return Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [
-                                MyColors.starterColor,
-                                MyColors.endColor,
-                              ],
-                              begin: const FractionalOffset(0.0, 0.0),
-                              end: const FractionalOffset(1.0, 0.0),
-                              stops: [0.0, 1.0],
-                              tileMode: TileMode.clamp),
-                        ),
-                        child: FlexibleSpaceBar(
-                          collapseMode: CollapseMode.parallax,
-                          centerTitle: true,
-                          title: Row(
-                            //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              AnimatedOpacity(
-                                duration: Duration(milliseconds: 300),
-                                opacity: top <= 110.0 ? 1.0 : 0,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                    Container(
-                                      height: kToolbarHeight / 1.8,
-                                      width: kToolbarHeight / 1.8,
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.white,
-                                            blurRadius: 1.0,
-                                          ),
-                                        ],
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage(
-                                              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                    Text(
-                                      // 'top.toString()',
-                                      'Guest',
-                                      style: TextStyle(
-                                          fontSize: 20.0, color: Colors.white),
-                                    ),
-                                  ],
+                flexibleSpace: LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
+                  top = constraints.biggest.height;
+                  return Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [
+                            MyColors.starterColor,
+                            MyColors.endColor,
+                          ],
+                          begin: const FractionalOffset(0.0, 0.0),
+                          end: const FractionalOffset(1.0, 0.0),
+                          stops: [0.0, 1.0],
+                          tileMode: TileMode.clamp),
+                    ),
+                    child: FlexibleSpaceBar(
+                      collapseMode: CollapseMode.parallax,
+                      centerTitle: true,
+                      title: Row(
+                        //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: top <= 110.0 ? 1.0 : 0,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 12,
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  height: kToolbarHeight / 1.8,
+                                  width: kToolbarHeight / 1.8,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.white,
+                                        blurRadius: 1.0,
+                                      ),
+                                    ],
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(
+                                          'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  // 'top.toString()',
+                                  'Guest',
+                                  style: TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
-                          background: Image(
-                            image: NetworkImage(
-                                'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      );
-                    }),
+                        ],
+                      ),
+                      background: Image(
+                        image: NetworkImage(
+                            'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  );
+                }),
               ),
               SliverToBoxAdapter(
                 child: Column(
@@ -118,15 +121,50 @@ class _UserScreenState extends State<UserScreen> {
                   children: [
                     Padding(
                         padding: const EdgeInsets.only(left: 8.0),
+                        child: userTitle('User Bag')),
+                    Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context).pushNamed(
+                            WishListScreen.routeName
+                          ),
+                          title: Text('Wishlist'),
+                          leading: Icon(MyAppIcons.wishlist),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () {
+
+                          },
+                          title: Text('Cart'),
+                          leading: Icon(MyAppIcons.cart),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
                         child: userTitle('User Information')),
                     Divider(
                       thickness: 1,
                       color: Colors.grey,
                     ),
-                    userListTile(context,'Email', 'Email sub', 0),
-                    userListTile(context,'Phone number', '4555', 1),
-                    userListTile(context,'Shipping address', '', 2),
-                    userListTile(context,'joined date', 'date', 3),
+                    userListTile(context, 'Email', 'Email sub', 0),
+                    userListTile(context, 'Phone number', '4555', 1),
+                    userListTile(context, 'Shipping address', '', 2),
+                    userListTile(context, 'joined date', 'date', 3),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: userTitle('User settings'),
@@ -185,22 +223,21 @@ class _UserScreenState extends State<UserScreen> {
       }
     }
 
-    return  Positioned(
+    return Positioned(
       top: top,
       right: 16.0,
-      child:  Transform(
-        transform:  Matrix4.identity()..scale(scale),
+      child: Transform(
+        transform: Matrix4.identity()..scale(scale),
         alignment: Alignment.center,
-        child:  FloatingActionButton(
+        child: FloatingActionButton(
           backgroundColor: Colors.purple,
           heroTag: "btn1",
-          onPressed: (){},
-          child:  Icon(Icons.camera_alt_outlined),
+          onPressed: () {},
+          child: Icon(Icons.camera_alt_outlined),
         ),
       ),
     );
   }
-
 
   List<IconData> _userTileIcon = [
     Icons.email,

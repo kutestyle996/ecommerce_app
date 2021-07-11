@@ -1,13 +1,11 @@
-import 'package:ecommerce_app/screens/cart.dart';
-import 'file:///D:/ecommerce_app/lib/widget/cart_empty.dart';
-import 'file:///D:/ecommerce_app/lib/widget/cart_full.dart';
 import 'package:ecommerce_app/screens/feeds.dart';
 import 'package:ecommerce_app/screens/home.dart';
 import 'package:ecommerce_app/screens/search.dart';
 import 'package:ecommerce_app/screens/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
+import 'file:///D:/ecommerce_app/lib/widget/cart_empty.dart';
 
 import 'constants/my_icons.dart';
 

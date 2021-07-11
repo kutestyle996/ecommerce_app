@@ -6,10 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatelessWidget {
+  static const routeName = '/cart';
   @override
   Widget build(BuildContext context) {
     List product = [];
-    return product.isNotEmpty
+    return product.isEmpty
         ? Scaffold(
             body: CartEmpty(),
           )
