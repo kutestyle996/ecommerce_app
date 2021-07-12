@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants/my_colors.dart';
 import 'package:ecommerce_app/constants/my_icons.dart';
-import 'file:///D:/ecommerce_app/lib/widget/cart_empty.dart';
-import 'file:///D:/ecommerce_app/lib/widget/cart_full.dart';
+import 'package:ecommerce_app/widget/cart_empty.dart';
+import 'cart_full.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

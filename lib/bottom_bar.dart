@@ -2,10 +2,9 @@ import 'package:ecommerce_app/screens/feeds.dart';
 import 'package:ecommerce_app/screens/home.dart';
 import 'package:ecommerce_app/screens/search.dart';
 import 'package:ecommerce_app/screens/user.dart';
+import 'package:ecommerce_app/widget/cart_empty.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///D:/ecommerce_app/lib/widget/cart_empty.dart';
 
 import 'constants/my_icons.dart';
 
